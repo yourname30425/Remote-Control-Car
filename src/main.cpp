@@ -1,13 +1,13 @@
 #include <DabbleESP32.h>
 
 // Định nghĩa các chân điều khiển động cơ
-#define MOTOR_AIN1 32
-#define MOTOR_AIN2 33
-#define MOTOR_PWMA 25
-#define MOTOR_BIN1 27
-#define MOTOR_BIN2 14
-#define MOTOR_PWMB 26
-#define MOTOR_STBY 4
+#define MOTOR_AIN1 26
+#define MOTOR_AIN2 25
+#define MOTOR_PWMA 33
+#define MOTOR_BIN1 14
+#define MOTOR_BIN2 12
+#define MOTOR_PWMB 13
+#define MOTOR_STBY 27
 
 // Định nghĩa các nút điều khiển từ Gamepad trong Dabble
 #define UP_BIT 0
@@ -80,16 +80,16 @@ bool checkBluetoothConnection() {
 // Điều khiển động cơ dựa trên lệnh từ Gamepad
 void controlMotors() {
   if (GamePad.isPressed(UP_BIT)) {
-    moveMotors(200, 200, true, true); // Tiến
+    moveMotors(255, 255, true, true); // Tiến
     Serial.println("Moving forward");
   } else if (GamePad.isPressed(DOWN_BIT)) {
-    moveMotors(200, 200, false, false); // Lùi
+    moveMotors(255, 255, false, false); // Lùi
     Serial.println("Moving backward");
   } else if (GamePad.isPressed(LEFT_BIT)) {
-    moveMotors(100, 200, true, true); // Rẽ trái
+    moveMotors(200, 0, true, true); // Rẽ trái
     Serial.println("Turning left");
   } else if (GamePad.isPressed(RIGHT_BIT)) {
-    moveMotors(200, 100, true, true); // Rẽ phải
+    moveMotors(0, 200, true, true); // Rẽ phải
     Serial.println("Turning right");
   } else {
     stopMotors(); // Dừng động cơ
